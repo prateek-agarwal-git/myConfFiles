@@ -11,7 +11,7 @@ esac
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
 HISTCONTROL=ignoreboth
-
+export EDITOR=vim
 # append to the history file, don't overwrite it
 shopt -s histappend
 
@@ -57,7 +57,7 @@ if [ -n "$force_color_prompt" ]; then
 fi
 
 if [ "$color_prompt" = yes ]; then
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+    PS1='\e[0;32m[$[\033[01;34m\]\w\[\033[00m\]\$\e[0m '
 else
     PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 fi
@@ -119,17 +119,20 @@ fi
 alias turing_04="ssh turing_04@10.129.2.253"
 alias turing_05="ssh turing_05@10.129.2.252"
 alias p4="ssh p4server@10.129.2.171"
-
-
+alias t6_upf="ssh p4client@10.129.2.203"
+alias t7_dnn="ssh smartnic@10.129.2.204"
+# t6_upf p4@client123
+# t7_dnn smartnic@t123
 
 
 
 export POSTGRES_SRCDIR=/home/prateek/git/postgresql
 export POSTGRES_INSTALLDIR=/home/prateek/HDD/postgre_database
 export LD_LIBRARY_PATH=${POSTGRES_INSTALLDIR}/lib:${LD_LIBRARY_PATH}
-export PATH=${POSTGRES_INSTALLDIR}/bin:${PATH}:$HOME/bin
 export PGDATA=${POSTGRES_INSTALLDIR}/data
 source /opt/intel/vtune_profiler_2020/env/vars.sh
 export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
 export SPARK_HOME=/home/prateek/cs631/spark-2.4.7-bin-hadoop2.7
-
+export PS1="\w$"
+export GOPATH=$HOME/Github/go/bin
+export PATH=${POSTGRES_INSTALLDIR}/bin:${PATH}:$HOME/bin:$GOPATH/bin:/home/prateek/clion/bin/
